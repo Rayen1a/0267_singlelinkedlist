@@ -4,7 +4,7 @@ using namespace std;
 
 class Node
 {
-    public:
+public:
     int noMhs;
     Node *next;
 };
@@ -12,7 +12,8 @@ class Node
 class LinkedList
 {
     Node *START;
-    public:
+
+public:
     LinkedList()
     {
         START = NULL;
@@ -55,7 +56,7 @@ class LinkedList
         nodeBaru->next = current;
         previous->next = nodeBaru;
     }
-    
+
     bool listEmpty()
     {
         return (START == NULL);
@@ -68,8 +69,8 @@ class LinkedList
 
         while ((*current != NULL) && (nim != (*current)->noMhs))
         {
-        *previous = *current;
-        *current = (*current)->next;
+            *previous = *current;
+            *current = (*current)->next;
         }
 
         return (*current != NULL);
@@ -79,12 +80,12 @@ class LinkedList
     {
         Node *current, *previous;
         if (!Search(nim, &previous, &current))
-        return false;
+            return false;
 
         if (current == START)
-        START = START->next;
+            START = START->next;
         else
-        previous->next = current->next;
+            previous->next = current->next;
 
         delete current;
         return true;
@@ -107,7 +108,6 @@ class LinkedList
             }
             cout << endl;
         }
-        
     }
 };
 
@@ -119,17 +119,17 @@ int main()
 
     do
     {
-       cout << "Menu" << endl;
-       cout << "1. Menambah data kedalam list" << endl;
-       cout << "2. Menghapus data dari dalam list" << endl;
-       cout << "3. Menampilkan semua data didalam list" << endl;
-       cout << "4. Mencari data dalam list" << endl;
-       cout << "5. Keluar" << endl;
-       cout << endl
-       << "Masukkan pilihan (1-5): ";
-       cin >> ch;
-       switch (ch)
-       {
+        cout << "Menu" << endl;
+        cout << "1. Menambah data kedalam list" << endl;
+        cout << "2. Menghapus data dari dalam list" << endl;
+        cout << "3. Menampilkan semua data didalam list" << endl;
+        cout << "4. Mencari data dalam list" << endl;
+        cout << "5. Keluar" << endl;
+        cout << endl
+             << "Masukkan pilihan (1-5): ";
+        cin >> ch;
+        switch (ch)
+        {
         case '1':
         {
             mhs.addNode();
@@ -141,17 +141,18 @@ int main()
             if (mhs.listEmpty())
             {
                 cout << endl
-                << "List Kosong" << endl;
+                     << "List Kosong" << endl;
                 break;
             }
             cout << endl
-            << "\nMasukkan no mahasiswa yang akan dihapus : ";
+                 << "\nMasukkan no mahasiswa yang akan dihapus : ";
             cin >> nim;
             if (mhs.delNode(nim) == false)
-            cout << endl
-            << "Data tidak ditemukan" << endl;
+                cout << endl
+                     << "Data tidak ditemukan" << endl;
             else
-            cout << endl << "Data dengan nomor mahasiswa " << nim << " berhasil dihapus " << endl;
+                cout << endl
+                     << "Data dengan nomor mahasiswa " << nim << " berhasil dihapus " << endl;
         }
         break;
         case '3':
@@ -169,16 +170,29 @@ int main()
             }
             Node *previous, *current;
             cout << endl
-            << "Masukkan no mahasiswa yang dicari : ";
+                 << "Masukkan no mahasiswa yang dicari : ";
             cin >> nim;
             if (mhs.Search(nim, &previous, &current) == false)
-            cout << endl
-            << "Data ditemukan" << endl;
-            cout << "\nNo Mahasiswa: " << current->noMhs << endl;
-            cout << "\n";
+                cout << endl
+                     << "Data ditemukan" << endl;
+            else
+            {
+                cout << endl
+                     << "Data ditemukan" << endl;
+                cout << "\nNo Mahasiswa: " << current->noMhs << endl;
+                cout << "\n";   
+            }
         }
-       }
-       break; /* code */
-    } 
-    
+        break;
+    case '5':
+    {
+    }
+    break;
+    default:
+    {
+        cout << "Pilihan salah !." << endl;
+    }
+    break;
+    }
+} while (ch != '5');
 }
